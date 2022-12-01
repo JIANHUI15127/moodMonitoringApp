@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.moodCheckIn.CheckInRatingActivity">
+
+    <!--<RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/smiley_view"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_centerHorizontal="true"
+            app:default_rating="1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/smiley_view"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="Rate your Mood"
+            android:textColor="@color/color_primary"
+            android:textSize="16sp" />
+
+        &lt;!&ndash;<RatingBar
+            android:id="@+id/rating_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/smiley_view"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="70dp"
+            android:numStars="4"
+            android:rating="1"
+            android:stepSize="1"
+            android:theme="@style/RatingBar" />&ndash;&gt;
+
+        &lt;!&ndash;android:layout_below="@id/rating_bar"&ndash;&gt;
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@color/color_primary"
+            android:elevation="4dp"
+            android:text="Submit" />
+    </RelativeLayout>-->
+
+</ScrollView>

@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">FypProject</string>
+    <string name="tv_username">Stephen</string>
+    <string name="iv_user_profile">user_profile_profile</string>
+    <string name="tv_user_email">stephen@gmail.com</string>
+    <string name="tv_user_phone">0123458888</string>
+    <string name="emoji">Emoji</string>
+    <string name="scale">Rating</string>
+    <string name="emotionRecognition">Emotion Recognition</string>
+    <string name="color">Color</string>
+    <string name="poor">POOR</string>
+    <string name="good">GOOD</string>
+    <string name="great">GREAT</string>
+    <string name="okay">OKAY</string>
+    <string name="bad">BAD</string>
+    <string name="awful">AWFUL</string>
+
+    <string name="no_recognized">Wow. Such empty. Wanna some recognize?</string>
+    <string name="loading_error">Loading error</string>
+    <string name="recognized_image">Recognized image</string>
+    <string name="no_required_permissions">No required permissions</string>
+    <string name="recognizing_error">Recognizing error. Faces not found or file is broken.</string>
+    <string name="local">Local</string>
+    <string name="sky_biometry">Sky Biometry</string>
+
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="login_fragment_label">Login Fragment</string>
+    <string name="signup_fragment_label">Signup Fragment</string>
+    <string name="otp_fragment_label">Otp Fragment</string>
+    <string name="signup_welcome_hello">Hello,</string>
+    <string name="signup_welcome_text">Sign Up!</string>
+    <string name="signup_name_hint">USER NAME</string>
+    <string name="signup_password_hint">PASSWORD</string>
+    <string name="signup_conf_password_hint">CONFIRM PASSWORD</string>
+    <string name="signup_switch_tnc_label">I accept the policy and terms</string>
+    <string name="signup_btn_text">Sign Up</string>
+    <string name="signup_name_ph">Your Name</string>
+    <string name="signup_mobile_ph">Your Mobile</string>
+    <string name="signup_email_hint">E-Mail</string>
+    <string name="signup_email_ph">Your email</string>
+    <string name="signup_password_ph">Enter Password</string>
+    <string name="signup_cnf_password_ph">Enter Password Again</string>
+    <string name="signup_login_text">Already have an account? Log In</string>
+    <string name="bg_img_desc">Image View</string>
+    <string name="login_welcome">Welcome Back,</string>
+    <string name="login_welcome_text">Log In!</string>
+    <string name="login_mobile_hint">MOBILE NUMBER</string>
+    <string name="login_email_ph">Enter email</string>
+
+    <string name="login_password_hint">PASSWORD</string>
+    <string name="login_password_ph">Enter Password</string>
+    <string name="login_switch_remember_text">Remember Me</string>
+    <string name="login_btn_text">Log In</string>
+    <string name="login_forgot_text">Forgot Password?</string>
+    <string name="otp_label_text">Enter the OTP received on Registered Mobile Number</string>
+    <string name="otp_otp_ph">6 Digit OTP</string>
+    <string name="otp_verify_btn_text">VERIFY</string>
+    <string name="otp_verify_error_text">Wrong OTP!</string>
+    <string name="otp_message_1">One Step to go…</string>
+    <string name="otp_message_2">O T P</string>
+    <string name="login_error_text">Incorrect Mobile Number or Password</string>
+    <string name="login_signup_text">New User? Sign Up</string>
+    <string name="signup_seller_text">Do you wish to sell any products?</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

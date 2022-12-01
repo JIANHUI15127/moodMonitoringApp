@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "664999455027",
+    "firebase_url": "https://mood-monitoring-app-2da85-default-rtdb.firebaseio.com",
+    "project_id": "mood-monitoring-app-2da85",
+    "storage_bucket": "mood-monitoring-app-2da85.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664999455027:android:836350f2fb9146c41cb646",
+        "android_client_info": {
+          "package_name": "com.example.moodmonitoringapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664999455027-opelfqtcq6m8uren01v3nvqc7i37qdfi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxVg3wBp1iuBBJWKpDVWtT0TZ79k7MvUo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664999455027-opelfqtcq6m8uren01v3nvqc7i37qdfi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
