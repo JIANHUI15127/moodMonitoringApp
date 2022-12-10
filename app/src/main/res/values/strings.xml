@@ -14,6 +14,14 @@
     <string name="okay">OKAY</string>
     <string name="bad">BAD</string>
     <string name="awful">AWFUL</string>
+    <string name="default_notification_channel_id">default</string>
+    <string name="button_subscribe_text">Subscribe Discount Offers Notifications</string>
+
+    <string name="gallery">Gallery</string>
+    <string name="live">Camera</string>
+    <string name="emotion_recognition">Emotion recognition</string>
+    <string name="instruction">Choose a video from your gallery or start a live video using your camera and the neural network will recognize the emotions.</string>
+    <string name="back">Back</string>
 
     <string name="no_recognized">Wow. Such empty. Wanna some recognize?</string>
     <string name="loading_error">Loading error</string>
@@ -63,4 +71,10 @@
     <string name="login_signup_text">New User? Sign Up</string>
     <string name="signup_seller_text">Do you wish to sell any products?</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_testing1">testing1</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

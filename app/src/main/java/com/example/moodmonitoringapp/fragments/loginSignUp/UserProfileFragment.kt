@@ -1,18 +1,22 @@
 package com.example.moodmonitoringapp.fragments.loginSignUp
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.moodmonitoringapp.R
-import com.example.moodmonitoringapp.data.Communicator
+import com.example.moodmonitoringapp.data.MoodEntrySQLiteDBHelper
+import com.example.moodmonitoringapp.data.PastimeAdapter
 import com.example.moodmonitoringapp.databinding.FragmentUserProfileBinding
-import com.example.moodmonitoringapp.fragments.moodCheckIn.MoodCheckInActivity
 import com.example.moodmonitoringapp.viewModel.UserProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -25,7 +29,13 @@ class UserProfileFragment : Fragment() {
     private var _binding : FragmentUserProfileBinding? = null
     private lateinit var db : DatabaseReference
     private val binding get() = _binding!!
-    //private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseAuth: FirebaseAuth
+
+    lateinit var recyclerView: RecyclerView
+    lateinit var recyclerViewAdapter: PastimeAdapter
+    var pastimeEntries = ArrayList<String>()
+
+    lateinit var databaseHelper: MoodEntrySQLiteDBHelper
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -54,7 +64,7 @@ class UserProfileFragment : Fragment() {
             replaceFragment(LoginFragment())
         }
 
-        binding.btnCheckHistory.setOnClickListener {
+        binding.btnHistory.setOnClickListener {
             replaceFragment(HistoryCheckInFragment())
         }
 
@@ -104,12 +114,59 @@ class UserProfileFragment : Fragment() {
 
         }*/
 
+        recyclerView = view?.findViewById(R.id.pastime_list)!!
+
+        databaseHelper = MoodEntrySQLiteDBHelper(activity)
+        pastimeEntries = ArrayList<String>()
+
+        pastimeEntries = fetchPastimeData()
+
+        if (activity != null) {
+            recyclerViewAdapter = PastimeAdapter(activity?.applicationContext!!, pastimeEntries, requireActivity())
+        }
+        recyclerView.adapter = recyclerViewAdapter
+        recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
+
+        val logPastimeButton = view?.findViewById<Button>(R.id.add_pastime_button)
+        val uniquePastime = view?.findViewById<EditText>(R.id.unique_pastime)
+
+        logPastimeButton?.setOnClickListener({ view ->
+            if (uniquePastime != null && uniquePastime.text.toString() != "") {
+                submitPastimeEntry(uniquePastime)
+                uniquePastime.getText().clear()
+                onResume()
+            }
+        })
+
         return view
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun submitPastimeEntry(uniquePastime: EditText) {
+        databaseHelper.savePastime(uniquePastime.text.toString().toUpperCase())
+    }
+
+    private fun fetchPastimeData(): ArrayList<String>{
+        val cursor = databaseHelper.listPastimeEntries()
+
+        val fromPastimeColumn = cursor.getColumnIndex(MoodEntrySQLiteDBHelper.PASTIME_ENTRY_COLUMN)
+
+        if(cursor.getCount() == 0) {
+            Log.i("NO PASTIME ENTRIES", "Fetched data and found none.")
+        } else {
+            Log.i("PASTIME ENTRIES FETCHED", "Fetched data and found pastime entries.")
+            pastimeEntries.clear()
+
+            while (cursor.moveToNext()) {
+                val nextPastime = cursor.getString(fromPastimeColumn)
+                pastimeEntries.add(nextPastime.toString())
+            }
+        }
+        return pastimeEntries
     }
 
     /*private fun checkUser() {

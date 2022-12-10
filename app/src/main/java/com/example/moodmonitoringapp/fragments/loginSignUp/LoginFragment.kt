@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
 import com.example.moodmonitoringapp.R
 import com.example.moodmonitoringapp.databinding.FragmentLoginBinding
+import com.example.moodmonitoringapp.fragments.moodCheckIn.MoodCheckInFragment
 import com.example.moodmonitoringapp.viewModel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -79,7 +80,7 @@ class LoginFragment : Fragment() {
 
         viewModel.isAbleToLogin.observe(viewLifecycleOwner, Observer {
             if (it) {
-                replaceFragment(UserProfileFragment())
+                replaceFragment(MoodCheckInFragment())
             } else {
                 binding.progressBar.visibility = View.GONE
             }

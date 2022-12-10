@@ -4,4 +4,8 @@
         <item name="colorControlNormal">#929292</item>
         <item name="colorControlActivated">#f8b83b</item>
     </style>
+
+    <style name="ToolbarWhite">
+        <item name="android:textColorPrimary">@color/blue</item>
+    </style>
 </resources>
