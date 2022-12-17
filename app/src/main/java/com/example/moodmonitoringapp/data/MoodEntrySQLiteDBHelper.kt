@@ -61,7 +61,7 @@ class MoodEntrySQLiteDBHelper(context: Context?) : SQLiteOpenHelper(
     ) {
         var confirmedDatabase = database
         if(confirmedDatabase == null) {
-            confirmedDatabase = MoodEntrySQLiteDBHelper(context).getWritableDatabase()
+            confirmedDatabase = MoodEntrySQLiteDBHelper(context).writableDatabase
         }
 
         val values = ContentValues()
@@ -82,12 +82,12 @@ class MoodEntrySQLiteDBHelper(context: Context?) : SQLiteOpenHelper(
         if (newRowId == -1.toLong()) {
             Log.wtf("SQLITE INSERTION FAILED", "We don't know why")
         } else {
-            Log.i("MOOD ENTRY SAVED!", "Saved in row ${newRowId}: ${moodEntry.toString()}")
+            Log.i("MOOD ENTRY SAVED!", "Saved in row ${newRowId}: $moodEntry")
         }
     }
 
     fun listMoodEntries(limitToPastWeek: Boolean = false): Cursor {
-        val database: SQLiteDatabase = MoodEntrySQLiteDBHelper(context).getReadableDatabase()
+        val database: SQLiteDatabase = MoodEntrySQLiteDBHelper(context).readableDatabase
 
         var filterOnThis: String? = null
         var usingTheseValues: Array<String>? = null
@@ -107,12 +107,12 @@ class MoodEntrySQLiteDBHelper(context: Context?) : SQLiteOpenHelper(
             null,
             MOOD_ENTRY_COLUMN_LOGGED_AT + " DESC"
         )
-        Log.i("DATA FETCHED!", "Number of mood entries returned: " + cursor.getCount())
+        Log.i("DATA FETCHED!", "Number of mood entries returned: " + cursor.count)
         return cursor
     }
 
     fun savePastime(pastimeEntry: String) {
-        val database: SQLiteDatabase = MoodEntrySQLiteDBHelper(context).getWritableDatabase()
+        val database: SQLiteDatabase = MoodEntrySQLiteDBHelper(context).writableDatabase
         val values = ContentValues()
 
         values.put(PASTIME_ENTRY_COLUMN, pastimeEntry)
@@ -127,7 +127,7 @@ class MoodEntrySQLiteDBHelper(context: Context?) : SQLiteOpenHelper(
     }
 
     fun listPastimeEntries(): Cursor {
-        val database: SQLiteDatabase = MoodEntrySQLiteDBHelper(context).getReadableDatabase()
+        val database: SQLiteDatabase = MoodEntrySQLiteDBHelper(context).readableDatabase
 
         val cursor: Cursor = database.query(
             MoodEntrySQLiteDBHelper.PASTIME_ENTRY_TABLE_NAME,
@@ -138,12 +138,12 @@ class MoodEntrySQLiteDBHelper(context: Context?) : SQLiteOpenHelper(
             null,
             MoodEntrySQLiteDBHelper.PASTIME_ENTRY_COLUMN + " ASC"
         )
-        Log.i("DATA FETCHED!", "Number of pastime entries returned: " + cursor.getCount())
+        Log.i("DATA FETCHED!", "Number of pastime entries returned: " + cursor.count)
         return cursor
     }
 
     fun deletePastime(pastime: String) {
-        val database: SQLiteDatabase = MoodEntrySQLiteDBHelper(context).getWritableDatabase()
+        val database: SQLiteDatabase = MoodEntrySQLiteDBHelper(context).writableDatabase
         database.delete(PASTIME_ENTRY_TABLE_NAME, PASTIME_ENTRY_COLUMN + "='" + pastime + "'", null) > 0
     }
 
@@ -172,7 +172,7 @@ class MoodEntrySQLiteDBHelper(context: Context?) : SQLiteOpenHelper(
         val fromWeatherColumn =
             cursor.getColumnIndex(MoodEntrySQLiteDBHelper.MOOD_ENTRY_COLUMN_WEATHER)
 
-        if (cursor.getCount() == 0) {
+        if (cursor.count == 0) {
             Log.i("NO MOOD ENTRIES", "Fetched data and found none.")
         } else {
             Log.i("MOOD ENTRIES FETCHED!", "Fetched data and found mood entries.")

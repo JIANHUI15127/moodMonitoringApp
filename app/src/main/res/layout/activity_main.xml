@@ -42,29 +42,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/menu" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/community_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="55dp"
-            app:backgroundTint="#8ae8ff"
-            app:fabSize="normal"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-            app:layout_constraintEnd_toEndOf="@+id/bottom_navigation"
-            app:layout_constraintStart_toStartOf="@+id/bottom_navigation"
-            app:shapeAppearanceOverlay="@style/fab_3_rounded"
-            app:srcCompat="@drawable/community_platform" />
-
-        <TextView
-            android:id="@+id/community_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:text="Community"
-            android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="@+id/community_fab"
-            app:layout_constraintEnd_toStartOf="@+id/community_fab"
-            app:layout_constraintTop_toTopOf="@+id/community_fab" />
 
         <FrameLayout
             android:id="@+id/fragment_container"
@@ -81,19 +58,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id='@+id/add_fab'
-        android:layout_width="57dp"
-        android:layout_height="577dp"
-        android:layout_marginBottom="1dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/add_icon"
-        app:backgroundTint="#8ae8ff"
-        app:layout_anchor="@+id/bottomAppBar"
-        app:layout_anchorGravity="top|center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:shapeAppearanceOverlay="@style/fab_3_rounded" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

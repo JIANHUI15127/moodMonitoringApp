@@ -147,7 +147,7 @@ class CheckInRatingFragment : DialogFragment() {
         val fromPastimeColumn =
             cursor.getColumnIndex(MoodEntrySQLiteDBHelper.PASTIME_ENTRY_COLUMN)
 
-        if (cursor.getCount() == 0) {
+        if (cursor.count == 0) {
             Log.i("NO PASTIME ENTRIES", "Fetched data and found none.")
         } else {
             Log.i("PASTIME ENTRIES FETCHED", "Fetched data and found pastime entries.")
@@ -185,7 +185,7 @@ class CheckInRatingFragment : DialogFragment() {
         val dbPastimes = fetchPastimeData()
         dbPastimes.forEach {
             val pastimeCheckBox = CheckBox(activity)
-            pastimeCheckBox.setText(it)
+            pastimeCheckBox.text = it
             checkBoxLayout?.addView(pastimeCheckBox)
             checkBoxList.add(pastimeCheckBox)
         }

@@ -7,12 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.moodmonitoringapp.R
 import com.example.moodmonitoringapp.databinding.FragmentSignupBinding
 import com.example.moodmonitoringapp.viewModel.RegisterViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
@@ -20,6 +22,8 @@ import com.google.firebase.auth.FirebaseAuth
 class SignupFragment : Fragment() {
     private var _binding: FragmentSignupBinding? = null
     private val binding get() = _binding!!
+
+
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -29,6 +33,24 @@ class SignupFragment : Fragment() {
     ): View? {
         _binding = FragmentSignupBinding.inflate(layoutInflater, container, false)
         val view = binding.root
+
+        /*activity?.window?.decorView?.setOnApplyWindowInsetsListener { view, insets ->
+            val insetsCompat = WindowInsetsCompat.toWindowInsetsCompat(insets, view)
+            val isImeVisible = insetsCompat.isVisible(WindowInsetsCompat.Type.ime())
+            // below line, do the necessary stuff:
+//            binding.bottom.visibility =  if (isImeVisible) View.GONE else View.VISIBLE
+            activity?.findViewById<View>(R.id.bottom_navigation)?.visibility  = View.GONE
+            view.onApplyWindowInsets(insets)
+        }*/
+
+        /*activity?.window?.decorView?.setOnApplyWindowInsetsListener { view, insets ->
+            val insetsCompat = WindowInsetsCompat.toWindowInsetsCompat(insets, view)
+            val isImeVisible = insetsCompat.isVisible(WindowInsetsCompat.Type.ime())
+            // below line, do the necessary stuff:
+//            binding.bottom.visibility =  if (isImeVisible) View.GONE else View.VISIBLE
+            activity?.findViewById<View>(R.id.bottom_navigation)?.visibility  = if (isImeVisible) View.GONE else View.VISIBLE
+            view.onApplyWindowInsets(insets)
+        }*/
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -124,6 +146,8 @@ class SignupFragment : Fragment() {
             fragmentTransaction.commit()
         }
     }
+
+
 
 
 }

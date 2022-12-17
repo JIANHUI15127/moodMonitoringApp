@@ -144,7 +144,7 @@ class CheckInEmojiFragment : DialogFragment() {
         val fromPastimeColumn =
             cursor.getColumnIndex(MoodEntrySQLiteDBHelper.PASTIME_ENTRY_COLUMN)
 
-        if (cursor.getCount() == 0) {
+        if (cursor.count == 0) {
             Log.i("NO PASTIME ENTRIES", "Fetched data and found none.")
         } else {
             Log.i("PASTIME ENTRIES FETCHED", "Fetched data and found pastime entries.")
@@ -182,7 +182,7 @@ class CheckInEmojiFragment : DialogFragment() {
         val dbPastimes = fetchPastimeData()
         dbPastimes.forEach {
             val pastimeCheckBox = CheckBox(activity)
-            pastimeCheckBox.setText(it)
+            pastimeCheckBox.text = it
             checkBoxLayout?.addView(pastimeCheckBox)
             checkBoxList.add(pastimeCheckBox)
         }
@@ -202,9 +202,9 @@ class CheckInEmojiFragment : DialogFragment() {
 
         for ((index, button) in moodButtonCollection.withIndex()) {
             button?.setOnClickListener { view ->
-                for (button in moodButtonCollection) button?.setBackgroundColor(unselectedColor);
+                for (button in moodButtonCollection) button?.setBackgroundColor(unselectedColor)
 
-                view.setBackgroundColor(selectedColor);
+                view.setBackgroundColor(selectedColor)
                 currentMood = Mood.values()[index]
             }
         }

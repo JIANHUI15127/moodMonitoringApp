@@ -1,27 +1,23 @@
 package com.example.moodmonitoringapp
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.example.moodmonitoringapp.data.RecognizedAdapter
 import com.example.moodmonitoringapp.databinding.ActivityMainBinding
 
 import com.example.moodmonitoringapp.fragments.loginSignUp.LoginFragment
 import com.example.moodmonitoringapp.fragments.loginSignUp.UserProfileFragment
 import com.example.moodmonitoringapp.fragments.moodCheckIn.MoodCheckInFragment
-import com.example.moodmonitoringapp.viewModel.MainViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import kotlinx.android.synthetic.main.activity_testing1.*
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: MainViewModel
-    private lateinit var adapter: RecognizedAdapter
 
 
     private val loginFragment = LoginFragment()
@@ -37,14 +33,6 @@ class MainActivity : AppCompatActivity() {
 
 
     // FloatingActionButton for all the FABs
-    private lateinit var addFab: FloatingActionButton
-    private lateinit var communityFab: FloatingActionButton
-
-    // These are taken to make visible and invisible along with FABs
-    private lateinit var communityText: TextView
-
-    // to check whether sub FAB buttons are visible or not.
-    private var isAllFabsVisible: Boolean? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,8 +54,6 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
-
 
     }
 

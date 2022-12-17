@@ -8,5 +8,5 @@ fun isTimeAutomatic(context: Context): Boolean {
         context.contentResolver,
         Settings.Global.AUTO_TIME,
         0
-    ) == 1;
+    ) == 1
 }

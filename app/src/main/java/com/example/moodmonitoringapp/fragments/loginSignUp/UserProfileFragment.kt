@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moodmonitoringapp.R
+import com.example.moodmonitoringapp.data.MoodEntry
 import com.example.moodmonitoringapp.data.MoodEntrySQLiteDBHelper
 import com.example.moodmonitoringapp.data.PastimeAdapter
 import com.example.moodmonitoringapp.databinding.FragmentUserProfileBinding
@@ -22,6 +23,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class UserProfileFragment : Fragment() {
@@ -36,6 +39,8 @@ class UserProfileFragment : Fragment() {
     var pastimeEntries = ArrayList<String>()
 
     lateinit var databaseHelper: MoodEntrySQLiteDBHelper
+    lateinit var moodEntries: ArrayList<MoodEntry>
+
 
     private lateinit var mAuth: FirebaseAuth
 
@@ -72,6 +77,8 @@ class UserProfileFragment : Fragment() {
             replaceFragment(EditProfileFragment())
         }
 
+        //binding.tvCheckIn.setText(recyclerView..itemCount)
+
         /*binding.userImage.setOnClickListener{
             val intent = Intent(this@UserProfileFragment.requireContext(),EditProfileActivity::class.java)
             startActivity(intent)
@@ -81,7 +88,7 @@ class UserProfileFragment : Fragment() {
 
 
         viewModel.userWithData.observe(viewLifecycleOwner, Observer {
-            binding.email.text = it.email
+            binding.email.text = it!!.email
             binding.username.text = it.username
             binding.phone.text = it.phoneNumber
         })
@@ -114,7 +121,7 @@ class UserProfileFragment : Fragment() {
 
         }*/
 
-        recyclerView = view?.findViewById(R.id.pastime_list)!!
+        recyclerView = view.findViewById(R.id.pastime_list)!!
 
         databaseHelper = MoodEntrySQLiteDBHelper(activity)
         pastimeEntries = ArrayList<String>()
@@ -127,13 +134,13 @@ class UserProfileFragment : Fragment() {
         recyclerView.adapter = recyclerViewAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext!!)
 
-        val logPastimeButton = view?.findViewById<Button>(R.id.add_pastime_button)
-        val uniquePastime = view?.findViewById<EditText>(R.id.unique_pastime)
+        val logPastimeButton = view.findViewById<Button>(R.id.add_pastime_button)
+        val uniquePastime = view.findViewById<EditText>(R.id.unique_pastime)
 
         logPastimeButton?.setOnClickListener({ view ->
             if (uniquePastime != null && uniquePastime.text.toString() != "") {
                 submitPastimeEntry(uniquePastime)
-                uniquePastime.getText().clear()
+                uniquePastime.text.clear()
                 onResume()
             }
         })
@@ -147,7 +154,7 @@ class UserProfileFragment : Fragment() {
     }
 
     private fun submitPastimeEntry(uniquePastime: EditText) {
-        databaseHelper.savePastime(uniquePastime.text.toString().toUpperCase())
+        databaseHelper.savePastime(uniquePastime.text.toString().uppercase(Locale.getDefault()))
     }
 
     private fun fetchPastimeData(): ArrayList<String>{
@@ -155,7 +162,7 @@ class UserProfileFragment : Fragment() {
 
         val fromPastimeColumn = cursor.getColumnIndex(MoodEntrySQLiteDBHelper.PASTIME_ENTRY_COLUMN)
 
-        if(cursor.getCount() == 0) {
+        if(cursor.count == 0) {
             Log.i("NO PASTIME ENTRIES", "Fetched data and found none.")
         } else {
             Log.i("PASTIME ENTRIES FETCHED", "Fetched data and found pastime entries.")

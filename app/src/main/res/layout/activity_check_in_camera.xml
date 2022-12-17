@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.moodCheckIn.CheckInCameraActivity"
     android:id="@+id/rootViewCamera">
 
     <TextView
@@ -15,10 +14,10 @@
         android:text="@string/no_required_permissions"
         android:visibility="invisible"/>
 
-    <androidx.camera.view.PreviewView
+    <!--<androidx.camera.view.PreviewView
         android:id="@+id/previewView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"/>-->
 
     <ImageButton
         android:id="@+id/photoButton"

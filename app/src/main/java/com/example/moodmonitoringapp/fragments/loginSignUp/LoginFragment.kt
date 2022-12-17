@@ -7,12 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsCompat.toWindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.Observer
 import com.example.moodmonitoringapp.R
 import com.example.moodmonitoringapp.databinding.FragmentLoginBinding
 import com.example.moodmonitoringapp.fragments.moodCheckIn.MoodCheckInFragment
 import com.example.moodmonitoringapp.viewModel.LoginViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 
@@ -31,6 +34,18 @@ class LoginFragment : Fragment() {
         _binding = FragmentLoginBinding.inflate(layoutInflater, container, false)
         val view = binding.root
 
+        activity?.findViewById<View>(R.id.bottom_navigation)?.visibility = View.GONE
+
+
+        /*activity?.window?.decorView?.setOnApplyWindowInsetsListener { view, insets ->
+            val insetsCompat = WindowInsetsCompat.toWindowInsetsCompat(insets, view)
+            val isImeVisible = insetsCompat.isVisible(WindowInsetsCompat.Type.ime())
+            // below line, do the necessary stuff:
+//            binding.bottom.visibility =  if (isImeVisible) View.GONE else View.VISIBLE
+            activity?.findViewById<View>(R.id.bottom_navigation)?.visibility  = View.GONE
+            view.onApplyWindowInsets(insets)
+        }*/
+
         mAuth = FirebaseAuth.getInstance()
 
         binding.loginSignupTextView.setOnClickListener {
@@ -39,6 +54,7 @@ class LoginFragment : Fragment() {
         }
 
         val viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+
 
         binding.loginForgotTv.setOnClickListener {
             //findNavController().navigate(R.id.action_loginFragment_to_otpActivity)

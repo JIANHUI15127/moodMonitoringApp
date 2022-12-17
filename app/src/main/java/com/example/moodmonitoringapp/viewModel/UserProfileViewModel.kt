@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class UserProfileViewModel : ViewModel(){
 
-    val userWithData = MutableLiveData<UserData>()
+    val userWithData = MutableLiveData<UserData?>()
 
     val failedToGetdata = MutableLiveData<Boolean>()
 

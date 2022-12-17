@@ -5,10 +5,10 @@ fun CharSequence.toTitleCase(): CharSequence {
     var isFirstSymbol = true
     this.forEach {
         if (it.isLetter() && isFirstSymbol) {
-            sb.append(it.toTitleCase())
+            sb.append(it.titlecaseChar())
             isFirstSymbol = false
         } else {
-            sb.append(it.toLowerCase())
+            sb.append(it.lowercaseChar())
         }
     }
     return sb.toString()

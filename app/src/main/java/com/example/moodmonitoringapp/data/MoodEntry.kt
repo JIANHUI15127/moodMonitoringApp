@@ -1,6 +1,7 @@
 package com.example.moodmonitoringapp.data
 
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -12,6 +13,9 @@ class MoodEntry(mood: Mood) {
     var notes: String = ""
     var loggedAt: Long = Calendar.getInstance().timeInMillis
     var recentPastimes = arrayListOf<String>()
+    var userUID = FirebaseAuth.getInstance().currentUser!!.uid
+
+
 
     constructor(
         mood: Mood,
@@ -36,10 +40,10 @@ class MoodEntry(mood: Mood) {
         fun getFormattedLogTime(loggedAt: Long): String? {
             val DATE_FORMAT = "EEEE, dd MMM, yyyy, hh:mm a"
             val dateFormat = SimpleDateFormat(DATE_FORMAT)
-            dateFormat.setTimeZone(TimeZone.getDefault())
+            dateFormat.timeZone = TimeZone.getDefault()
             val calendar = Calendar.getInstance()
             calendar.timeInMillis = loggedAt
-            return dateFormat.format(calendar.getTime())
+            return dateFormat.format(calendar.time)
         }
 
         @JvmStatic

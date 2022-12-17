@@ -26,6 +26,7 @@ class CheckInColorFragment : DialogFragment() {
     lateinit var database: DatabaseReference
     private lateinit var firebaseAuth: FirebaseAuth
 
+
     var veryHappy = 0
     var happy = 0
     var normal = 0
@@ -90,40 +91,39 @@ class CheckInColorFragment : DialogFragment() {
         val userUId = FirebaseAuth.getInstance().currentUser!!.uid
 
         //val userUId = "T7oXZzgo9bejNajMAB1oUZaDrs73"
+        val emojiData = EmojiData(veryHappy,happy,normal, sad, verySad)
 
+
+
+
+        database = FirebaseDatabase.getInstance().getReference("Stats")
 
         database.child(userUId).child("TotalMoods").get().addOnSuccessListener {
+
             val verySad = it.child("verySad").value.toString().toInt()
             val sad = it.child("sad").value.toString().toInt()
             val normal = it.child("normal").value.toString().toInt()
             val happy = it.child("happy").value.toString().toInt()
             val veryHappy = it.child("veryHappy").value.toString().toInt()
-            val emojiData = EmojiData(veryHappy,happy,normal, sad, verySad)
-        }
 
-
-            database = FirebaseDatabase.getInstance().getReference("Stats")
-        database.child(userUId).child("TotalMoods").setValue(emojiData).addOnSuccessListener {
-
-                //val emojiData = EmojiData(veryHappy,happy,normal,sad,verySad)
-
-
-                if(moodEntry.mood == Mood.RED){
-                    database.child(userUId).child("TotalMoods").child("verySad").setValue(verySad + 1)
-                }
-                if(moodEntry.mood == Mood.ORANGE){
-                    database.child(userUId).child("TotalMoods").child("sad").setValue(sad + 1)
-                }
-                if(moodEntry.mood == Mood.YELLOW){
-                    database.child(userUId).child("TotalMoods").child("normal").setValue(normal + 1)
-                }
-                if(moodEntry.mood == Mood.GREEN){
-                    database.child(userUId).child("TotalMoods").child("happy").setValue(happy + 1)
-                }
-                if(moodEntry.mood == Mood.DARKGREEN){
-                    database.child(userUId).child("TotalMoods").child("veryHappy").setValue(veryHappy + 1)
-                }
+            if (moodEntry.mood == Mood.RED) {
+                database.child(userUId).child("TotalMoods").child("verySad").setValue(verySad + 1)
             }
+            if (moodEntry.mood == Mood.ORANGE) {
+                database.child(userUId).child("TotalMoods").child("sad").setValue(sad + 1)
+            }
+            if (moodEntry.mood == Mood.YELLOW) {
+                database.child(userUId).child("TotalMoods").child("normal").setValue(normal + 1)
+            }
+            if (moodEntry.mood == Mood.GREEN) {
+                database.child(userUId).child("TotalMoods").child("happy").setValue(happy + 1)
+            }
+            if (moodEntry.mood == Mood.DARKGREEN) {
+                database.child(userUId).child("TotalMoods").child("veryHappy")
+                    .setValue(veryHappy + 1)
+            }
+
+
 
         }.addOnFailureListener{
 
@@ -181,7 +181,7 @@ class CheckInColorFragment : DialogFragment() {
         val fromPastimeColumn =
             cursor.getColumnIndex(MoodEntrySQLiteDBHelper.PASTIME_ENTRY_COLUMN)
 
-        if (cursor.getCount() == 0) {
+        if (cursor.count == 0) {
             Log.i("NO PASTIME ENTRIES", "Fetched data and found none.")
         } else {
             Log.i("PASTIME ENTRIES FETCHED", "Fetched data and found pastime entries.")
@@ -219,7 +219,7 @@ class CheckInColorFragment : DialogFragment() {
         val dbPastimes = fetchPastimeData()
         dbPastimes.forEach {
             val pastimeCheckBox = CheckBox(activity)
-            pastimeCheckBox.setText(it)
+            pastimeCheckBox.text = it
             checkBoxLayout?.addView(pastimeCheckBox)
             checkBoxList.add(pastimeCheckBox)
         }
@@ -239,9 +239,9 @@ class CheckInColorFragment : DialogFragment() {
 
         for ((index, button) in moodButtonCollection.withIndex()) {
             button?.setOnClickListener { view ->
-                for (button in moodButtonCollection) button?.setBackgroundColor(unselectedColor);
+                for (button in moodButtonCollection) button?.setBackgroundColor(unselectedColor)
 
-                view.setBackgroundColor(selectedColor);
+                view.setBackgroundColor(selectedColor)
                 currentMood = Mood.values()[index + 5]
             }
         }

@@ -9,8 +9,9 @@
         android:icon="@drawable/chart"
         android:title="Stats"/>
     <item
-        android:id="@+id/placeholder"
-        android:title=""/>
+        android:id="@+id/communityPlatform"
+        android:icon ="@drawable/community_platform"
+        android:title="Community"/>
     <item
         android:id="@+id/goals"
         android:icon="@drawable/goals_icon"
