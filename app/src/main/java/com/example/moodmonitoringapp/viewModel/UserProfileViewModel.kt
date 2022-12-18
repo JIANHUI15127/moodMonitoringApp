@@ -9,7 +9,13 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.launch
+import java.io.File
+import android.util.Base64
+import androidx.core.content.ContentProviderCompat.requireContext
+import com.bumptech.glide.Glide
+import com.example.moodmonitoringapp.R
 
 class UserProfileViewModel : ViewModel(){
 
@@ -31,6 +37,8 @@ class UserProfileViewModel : ViewModel(){
                 override fun onDataChange(snapshot: DataSnapshot) {
                     val userProfile = snapshot.getValue(UserData::class.java)
 
+
+
                     if (userProfile !=null){
                         userWithData.value = userProfile
                     }
@@ -41,6 +49,8 @@ class UserProfileViewModel : ViewModel(){
                 }
 
             })
+
+
         }
     }
 }

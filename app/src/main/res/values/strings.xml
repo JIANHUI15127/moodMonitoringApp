@@ -20,7 +20,7 @@
     <string name="gallery">Gallery</string>
     <string name="live">Camera</string>
     <string name="emotion_recognition">Emotion recognition</string>
-    <string name="instruction">Choose a video from your gallery or start a live video using your camera and the neural network will recognize the emotions.</string>
+    <string name="instruction">Start a live video using your camera and the neural network will recognize the emotions.</string>
     <string name="back">Back</string>
 
     <string name="no_recognized">Wow. Such empty. Wanna some recognize?</string>
@@ -74,6 +74,10 @@
     <string name="title_activity_testing1">testing1</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+
+    <string name="onboarding_slide3_title">Login to your account</string>
+    <string name="onboarding_slide3_subtitle">Feel the happiness</string>
+    <string name="onboarding_slide3_desc">You don’t have to control your thoughts. You just have to stop letting them control you.</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

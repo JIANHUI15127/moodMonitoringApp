@@ -25,6 +25,8 @@
     <color name="color_primary">#00c853</color>
     <color name="darker_blue">#00c3ff</color>
     <color name="light_blue">#8ae8ff</color>
+    <color name="colorBlueMidnight">#003366</color>
+
 
     <color name="rate_color_awful">#DE4A3D</color>
     <color name="rate_color_bad">#E2701C</color>

@@ -1,5 +1,7 @@
 package com.example.moodmonitoringapp.fragments.loginSignUp
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -21,10 +23,15 @@ import com.example.moodmonitoringapp.databinding.FragmentUserProfileBinding
 import com.example.moodmonitoringapp.viewModel.UserProfileViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import java.util.*
 import kotlin.collections.ArrayList
+import android.util.Base64
+import androidx.core.content.ContentProviderCompat
+import com.bumptech.glide.Glide
+import com.example.moodmonitoringapp.data.UserData
+import com.google.firebase.storage.FirebaseStorage
+import java.io.File
 
 
 class UserProfileFragment : Fragment() {
@@ -40,6 +47,7 @@ class UserProfileFragment : Fragment() {
 
     lateinit var databaseHelper: MoodEntrySQLiteDBHelper
     lateinit var moodEntries: ArrayList<MoodEntry>
+    private lateinit var userUId: String
 
 
     private lateinit var mAuth: FirebaseAuth
@@ -58,6 +66,9 @@ class UserProfileFragment : Fragment() {
         val view = binding.root
 
         mAuth = FirebaseAuth.getInstance()
+
+        userUId = FirebaseAuth.getInstance().currentUser!!.uid
+
         db = FirebaseDatabase.getInstance().getReference("Users")
 
         val viewModel = ViewModelProvider(this).get(UserProfileViewModel::class.java)
@@ -73,9 +84,11 @@ class UserProfileFragment : Fragment() {
             replaceFragment(HistoryCheckInFragment())
         }
 
-        binding.userImage.setOnClickListener {
+        binding.btnInfo.setOnClickListener {
             replaceFragment(EditProfileFragment())
         }
+
+
 
         //binding.tvCheckIn.setText(recyclerView..itemCount)
 
@@ -85,12 +98,29 @@ class UserProfileFragment : Fragment() {
 
         }*/
 
+        /*imageRef.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // dataSnapshot contains the image data as a string
+                val imageData = dataSnapshot.getValue(String::class.java)
+                // Use the image data to create a Bitmap
+                val imageBitmap = base64ToBitmap(imageData)
+                // Display the image in an ImageView
+                binding.userImage.setImageURI(imageData)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                // An error occurred
+            }
+        })*/
 
 
         viewModel.userWithData.observe(viewLifecycleOwner, Observer {
             binding.email.text = it!!.email
             binding.username.text = it.username
             binding.phone.text = it.phoneNumber
+
+            val img = it.imageUrl
+            Glide.with(this).load(img).placeholder(R.drawable.ic_person).into(binding.userImage)
         })
 
 
@@ -147,6 +177,19 @@ class UserProfileFragment : Fragment() {
 
         return view
     }
+
+    private fun getUserProfile(){
+        val storageReference = FirebaseStorage.getInstance().reference.child("userProfile/$userUId.jpg")
+        val localFile = File.createTempFile("tempImage", "jpg")
+        storageReference.getFile(localFile).addOnSuccessListener{
+
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            binding.userImage.setImageBitmap(bitmap)
+
+        }
+
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -108,6 +108,7 @@ class SignupFragment : Fragment() {
             viewModel.password = password
             viewModel.username = username
             viewModel.phoneNumber = phoneNumber
+            viewModel.imageUrl = ""
 
             viewModel.register(mAuth)
 

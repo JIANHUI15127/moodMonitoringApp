@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.room.Database
 import com.example.moodmonitoringapp.R
 import com.example.moodmonitoringapp.data.*
+import com.example.moodmonitoringapp.fragments.loginSignUp.HistoryCheckInFragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -55,7 +57,7 @@ class CheckInColorFragment : DialogFragment() {
                 instructGuestToChooseAMood(view)
             } else {
                 submitMoodEntry(checkBoxList, notesEditText)
-                dismiss()
+                replaceFragment(HistoryCheckInFragment())
             }
         }
     }
@@ -244,6 +246,16 @@ class CheckInColorFragment : DialogFragment() {
                 view.setBackgroundColor(selectedColor)
                 currentMood = Mood.values()[index + 5]
             }
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment){
+        if(fragment!=null ){
+
+            val fragmentTransaction  = this.parentFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragment_container,fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
     }
 

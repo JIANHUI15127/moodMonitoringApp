@@ -15,6 +15,7 @@ class RegisterViewModel : ViewModel(){
     var email = ""
     var password = ""
     var phoneNumber = ""
+    var imageUrl = ""
 
     var veryHappy = 0
     var happy = 0
@@ -25,7 +26,7 @@ class RegisterViewModel : ViewModel(){
     fun register(mAuth: FirebaseAuth) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
-                val user = UserData(username,phoneNumber, email,password)
+                val user = UserData(username,phoneNumber, email,password,imageUrl)
                 val mood = EmojiData(veryHappy, happy, normal, sad, verySad)
                 FirebaseDatabase.getInstance().getReference("Users")
                     .child(FirebaseAuth.getInstance().currentUser!!.uid)
