@@ -23,7 +23,7 @@
         tools:replace="android:appComponentFactory"
         tools:targetApi="31">
         <activity
-            android:name=".OnBoardingActivity"
+            android:name=".fragments.loginSignUp.OnBoardingActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

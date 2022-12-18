@@ -1,5 +1,6 @@
 package com.example.moodmonitoringapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.example.moodmonitoringapp.databinding.ActivityMainBinding
 
 import com.example.moodmonitoringapp.fragments.loginSignUp.LoginFragment
+import com.example.moodmonitoringapp.fragments.loginSignUp.OnBoardingActivity
 import com.example.moodmonitoringapp.fragments.loginSignUp.UserProfileFragment
 import com.example.moodmonitoringapp.fragments.moodCheckIn.MoodCheckInFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -22,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
     private val loginFragment = LoginFragment()
     private val profileFragment = UserProfileFragment()
+    private val onBoardingActivity = OnBoardingActivity()
     //private val signUpFragment = SignupFragment()
 /*    private val dashBoardFragment = DashBoardFragment()    //Currently not working, pending future works
     private val activeGoalsFragment = ActiveGoalsFragment()         //Testing purpose, need to remove
@@ -39,7 +42,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(loginFragment)
+        val intent = Intent(this, onBoardingActivity::class.java)
+        startActivity(intent)
+
 
 
         binding.bottomNavigation.setOnNavigationItemSelectedListener{
