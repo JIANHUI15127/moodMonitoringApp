@@ -97,6 +97,14 @@ class CheckInColorFragment : DialogFragment() {
 
 
 
+        FirebaseDatabase.getInstance().getReference("Check-In").child(userUId)
+            .get().addOnSuccessListener {
+                val number = it.child("checkIn").value.toString().toInt()
+
+                FirebaseDatabase.getInstance().getReference("Check-In")
+                    .child(userUId).child("checkIn").setValue(number + 1)
+
+            }
 
         database = FirebaseDatabase.getInstance().getReference("Stats")
 

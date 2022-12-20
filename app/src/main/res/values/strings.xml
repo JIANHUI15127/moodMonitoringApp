@@ -74,10 +74,12 @@
     <string name="title_activity_testing1">testing1</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="moods">Moods</string>
+    <string name="pastimes">Activities</string>
 
     <string name="onboarding_slide3_title">Login to your account</string>
     <string name="onboarding_slide3_subtitle">Feel the happiness</string>
-    <string name="onboarding_slide3_desc">You don’t have to control your thoughts. You just have to stop letting them control you.</string>
+    <string name="onboarding_slide3_desc">You don’t have to control your thoughts. You just have to stop letting them control you.Fsign</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

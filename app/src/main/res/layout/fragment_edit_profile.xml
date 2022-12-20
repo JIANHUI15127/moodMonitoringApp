@@ -92,13 +92,14 @@
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="20sp"
+            android:visibility="invisible"
             android:drawableLeft="@drawable/ic_password"/>
 
         <Button
             android:id="@+id/btn_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtPassword"
+            android:layout_below="@+id/txtPhone"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"

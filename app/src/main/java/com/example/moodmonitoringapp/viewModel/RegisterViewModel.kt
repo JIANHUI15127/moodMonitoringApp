@@ -2,6 +2,7 @@ package com.example.moodmonitoringapp.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.moodmonitoringapp.data.CheckInNo
 import com.example.moodmonitoringapp.data.EmojiData
 import com.example.moodmonitoringapp.data.UserData
 import com.google.firebase.auth.FirebaseAuth
@@ -22,12 +23,14 @@ class RegisterViewModel : ViewModel(){
     var normal = 0
     var sad = 0
     var verySad = 0
+    var checkIn = 0
 
     fun register(mAuth: FirebaseAuth) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
                 val user = UserData(username,phoneNumber, email,password,imageUrl)
                 val mood = EmojiData(veryHappy, happy, normal, sad, verySad)
+                val checkInNo = CheckInNo(checkIn)
                 FirebaseDatabase.getInstance().getReference("Users")
                     .child(FirebaseAuth.getInstance().currentUser!!.uid)
                     .setValue(user)
@@ -38,6 +41,13 @@ class RegisterViewModel : ViewModel(){
                 FirebaseDatabase.getInstance().getReference("Stats")
                     .child(FirebaseAuth.getInstance().currentUser!!.uid).child("TotalMoods")
                     .setValue(mood)
+                    .addOnCompleteListener { task ->
+                        isRegistered.value = task.isSuccessful
+                        mAuth.currentUser!!.sendEmailVerification()
+                    }
+                FirebaseDatabase.getInstance().getReference("Check-In")
+                    .child(FirebaseAuth.getInstance().currentUser!!.uid)
+                    .setValue(checkInNo)
                     .addOnCompleteListener { task ->
                         isRegistered.value = task.isSuccessful
                         mAuth.currentUser!!.sendEmailVerification()

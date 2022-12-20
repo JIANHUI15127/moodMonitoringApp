@@ -91,6 +91,15 @@ class CheckInEmojiFragment : DialogFragment() {
 
         //val userUId = "eEnewVtfJXfmjAMvkr5ESfJzjUo2"
 
+        FirebaseDatabase.getInstance().getReference("Check-In").child(userUId)
+            .get().addOnSuccessListener {
+                val number = it.child("checkIn").value.toString().toInt()
+
+                FirebaseDatabase.getInstance().getReference("Check-In")
+                    .child(userUId).child("checkIn").setValue(number + 1)
+
+            }
+
 
         database = FirebaseDatabase.getInstance().getReference("Stats")
         database.child(userUId).child("TotalMoods")
@@ -110,6 +119,7 @@ class CheckInEmojiFragment : DialogFragment() {
             val normal = it.child("normal").value.toString().toInt()
             val happy = it.child("happy").value.toString().toInt()
             val veryHappy = it.child("veryHappy").value.toString().toInt()
+            val checkIn = it.child("veryHappy").value.toString().toInt()
 
             if(moodEntry.mood == Mood.UPSET){
                 database.child(userUId).child("TotalMoods").child("verySad").setValue(verySad + 1)

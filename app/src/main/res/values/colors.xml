@@ -27,6 +27,13 @@
     <color name="light_blue">#8ae8ff</color>
     <color name="colorBlueMidnight">#003366</color>
 
+    <color name="colorPrimary">#1DB954</color>
+    <color name="colorPrimaryDark">#000000</color>
+    <color name="colorAccent">#FFC107</color>
+    <color name="colorRed">#FF0000</color>
+    <color name="colorMagenta">#FF00FF</color>
+    <color name="colorBlue">#00FFFF</color>
+
 
     <color name="rate_color_awful">#DE4A3D</color>
     <color name="rate_color_bad">#E2701C</color>
